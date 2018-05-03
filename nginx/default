@@ -10,6 +10,9 @@ server {
     auth_basic off;
     proxy_pass http://prometheus_server.sd.ecs-monitoring.com:9090/status;
   }
+  location /health {
+    return 200 "Static health check";
+  }
 }
 server {
   listen 8080;

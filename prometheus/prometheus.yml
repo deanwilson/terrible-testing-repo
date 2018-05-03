@@ -10,10 +10,10 @@ scrape_configs:
   - job_name: prometheus
     scrape_interval: 5s
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: ['prometheus_server.sd.ecs-monitoring.com:9090']
   - job_name: paas-targets
     scheme: http
-    proxy_url: 'http://localhost:8080'
+    proxy_url: 'http://prometheus_server.sd.ecs-monitoring.com:8080'
     file_sd_configs:
       - files: ['/etc/prometheus/targets/*.json']
         refresh_interval: 30s
@@ -34,4 +34,4 @@ scrape_configs:
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: 127.0.0.1:9115
+        replacement: prometheus_server.sd.ecs-monitoring.com:9115

@@ -8,7 +8,9 @@ deleteDatasources:
 
 datasources:
 - name: Prometheus
-  type: Prometheus
-  access: direct
+  type: prometheus
+  access: proxy
   isDefault: true
-  url: http://prometheus-server:9090
+  url: http://prometheus-server:9090A
+  # don't use this in prod
+  editable: true
